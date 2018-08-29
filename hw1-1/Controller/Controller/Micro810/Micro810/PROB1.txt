@@ -1,0 +1,31 @@
+(****** QuickLD compiler *******************************)
+(****** Copyright Rockwell Automation Canada, Ltd ******)
+(****** ST *********************************************)
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+__EDTB1 := NOT(_IO_EM_DI_02) AND NOT(_IO_EM_DI_01) AND NOT(_IO_EM_DI_03) ;
+__EDTB2 := _IO_EM_DI_02 AND _IO_EM_DI_03 ;
+__EDTB3 := _IO_EM_DI_01 AND _IO_EM_DI_03 ;
+__EDTB4 := _IO_EM_DI_00 AND _IO_EM_DI_03 ;
+__EDTB5 := (__EDTB3 OR __EDTB4) ;
+__EDTB6 := (__EDTB2 OR __EDTB5) ;
+_IO_EM_DO_01 := (__EDTB1 OR __EDTB6) ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Code for the end of File **************)
+__GL __LG0000 ;
+
+
+
+(*************** Local Symbols table *******************)
+(* __EDTB1 *)
+(* __EDTB2 *)
+(* __EDTB3 *)
+(* __EDTB4 *)
+(* __EDTB5 *)
+(* __EDTB6 *)
+

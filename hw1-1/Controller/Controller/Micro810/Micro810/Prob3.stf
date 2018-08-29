@@ -1,0 +1,74 @@
+PROGRAM Prob3
+#info= QLD
+BOF
+
+
+(**)
+
+SOR  [0,1] (**) (**)  
+ BST  XIC  [1,0] (*_IO_EM_DI_00*) (*A*)  XIC  [2,0] (*_IO_EM_DI_01*) (*B*)  XIO  [3,0] (*_IO_EM_DI_02*) (*C*)  XIO  [4,0] (*_IO_EM_DI_03*) (*D*)
+   NXB  
+ BST  XIC  [1,1] (*_IO_EM_DI_00*) (*A*)  XIC  [2,1] (*_IO_EM_DI_02*) (*C*)  XIO  [3,1] (*_IO_EM_DI_01*) (*B*)  XIO  [4,1] (*_IO_EM_DI_03*) (*D*)
+   NXB  
+ BST  XIC  [1,2] (*_IO_EM_DI_00*) (*A*)  XIC  [2,2] (*_IO_EM_DI_03*) (*D*)  XIO  [3,2] (*_IO_EM_DI_01*) (*B*)  XIO  [4,2] (*_IO_EM_DI_02*) (*C*)
+   NXB  
+ BST  XIC  [1,3] (*_IO_EM_DI_01*) (*B*)  XIC  [2,3] (*_IO_EM_DI_02*) (*C*)  XIO  [3,3] (*_IO_EM_DI_00*) (*A*)  XIO  [4,3] (*_IO_EM_DI_03*) (*D*)
+   NXB  
+ BST  XIC  [1,4] (*_IO_EM_DI_01*) (*B*)  XIC  [2,4] (*_IO_EM_DI_03*) (*D*)  XIO  [3,4] (*_IO_EM_DI_00*) (*A*)  XIO  [4,4] (*_IO_EM_DI_02*) (*C*)
+   NXB  
+ BST  XIC  [1,5] (*_IO_EM_DI_02*) (*C*)  XIC  [2,5] (*_IO_EM_DI_03*) (*D*)  XIO  [3,5] (*_IO_EM_DI_00*) (*A*)  XIO  [4,5] (*_IO_EM_DI_01*) (*B*)
+   NXB  XIC  [1,6] (*_IO_EM_DI_00*) (*A*)  XIC  [2,6] (*_IO_EM_DI_01*) (*B*)  XIC  [3,6] (*_IO_EM_DI_02*) (*C*)  XIC  [4,6] (*_IO_EM_DI_03*) (*D*)
+ BND
+
+ BND
+
+ BND
+
+ BND
+
+ BND
+
+ BND
+  OTE  [5,0] (*_IO_EM_DO_00*) (*R*)
+EOR [6,0]
+
+
+(**)
+
+SOR  [0,9] (**) (**)  
+ BST  XIC  [1,0] (*_IO_EM_DI_00*) (*A*)  XIO  [2,0] (*_IO_EM_DI_01*) (*B*)  XIO  [3,0] (*_IO_EM_DI_02*) (*C*)  XIO  [4,0] (*_IO_EM_DI_03*) (*D*)
+   NXB  
+ BST  XIC  [1,1] (*_IO_EM_DI_01*) (*B*)  XIO  [2,1] (*_IO_EM_DI_00*) (*A*)  XIO  [3,1] (*_IO_EM_DI_02*) (*C*)  XIO  [4,1] (*_IO_EM_DI_03*) (*D*)
+   NXB  
+ BST  XIC  [1,2] (*_IO_EM_DI_02*) (*C*)  XIO  [2,2] (*_IO_EM_DI_01*) (*B*)  XIO  [3,2] (*_IO_EM_DI_00*) (*A*)  XIO  [4,2] (*_IO_EM_DI_03*) (*D*)
+   NXB  
+ BST  XIC  [1,3] (*_IO_EM_DI_03*) (*D*)  XIO  [2,3] (*_IO_EM_DI_01*) (*B*)  XIO  [3,3] (*_IO_EM_DI_02*) (*C*)  XIO  [4,3] (*_IO_EM_DI_00*) (*A*)
+   NXB  
+ BST  XIC  [1,4] (*_IO_EM_DI_00*) (*A*)  XIC  [2,4] (*_IO_EM_DI_01*) (*B*)  XIC  [3,4] (*_IO_EM_DI_02*) (*C*)  XIO  [4,4] (*_IO_EM_DI_03*) (*D*)
+   NXB  
+ BST  XIC  [1,5] (*_IO_EM_DI_00*) (*A*)  XIC  [2,5] (*_IO_EM_DI_01*) (*B*)  XIC  [3,5] (*_IO_EM_DI_02*) (*C*)  XIO  [4,5] (*_IO_EM_DI_03*) (*D*)
+   NXB  
+ BST  
+ BST  XIC  [1,6] (*_IO_EM_DI_00*) (*A*)  XIC  [2,6] (*_IO_EM_DI_01*) (*B*)  XIC  [3,6] (*_IO_EM_DI_03*) (*D*)  XIO  [4,6] (*_IO_EM_DI_02*) (*C*)
+   NXB  XIC  [1,7] (*_IO_EM_DI_00*) (*A*)  XIC  [2,7] (*_IO_EM_DI_03*) (*D*)  XIC  [3,7] (*_IO_EM_DI_02*) (*C*)  XIO  [4,7] (*_IO_EM_DI_01*) (*B*)
+ BND
+
+   NXB  XIC  [1,8] (*_IO_EM_DI_03*) (*D*)  XIC  [2,8] (*_IO_EM_DI_01*) (*B*)  XIC  [3,8] (*_IO_EM_DI_02*) (*C*)  XIO  [4,8] (*_IO_EM_DI_00*) (*A*)
+ BND
+
+ BND
+
+ BND
+
+ BND
+
+ BND
+
+ BND
+
+ BND
+  OTE  [5,0] (*_IO_EM_DO_02*) (*G*)
+EOR [6,0]
+EOF
+#end_info
+END_PROGRAM

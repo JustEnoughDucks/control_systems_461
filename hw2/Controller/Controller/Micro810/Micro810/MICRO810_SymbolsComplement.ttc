@@ -1,0 +1,23 @@
+[BEGIN FB INPUTS]
+I1=micro810.micro810.prob3/tp_1.in,0x645,BOOL
+I2=micro810.micro810.prob3/tp_1.pt,0x66C,TIME
+I3=micro810.micro810.prob3/tp_2.in,0x645,BOOL
+I4=micro810.micro810.prob3/tp_2.pt,0x66C,TIME
+I5=micro810.micro810.prob3/tp_3.in,0x645,BOOL
+I6=micro810.micro810.prob3/tp_3.pt,0x66C,TIME
+I7=micro810.micro810.prob1/tp_1.in,0x647,BOOL
+I8=micro810.micro810.prob1/tp_1.pt,0x66C,TIME
+I9=micro810.micro810.prob1/tp_2.in,0x647,BOOL
+I10=micro810.micro810.prob1/tp_2.pt,0x66C,TIME
+I11=micro810.micro810.prob1/tp_3.in,0x647,BOOL
+I12=micro810.micro810.prob1/tp_3.pt,0x66C,TIME
+I13=micro810.micro810.prob2/ctu_1.cu,0x648,BOOL
+I14=micro810.micro810.prob2/ctu_1.reset,0x407,BOOL
+I15=micro810.micro810.prob2/ctu_1.pv,0x658,DINT
+I16=micro810.micro810.prob2/ctu_2.cu,0x648,BOOL
+I17=micro810.micro810.prob2/ctu_2.reset,0x407,BOOL
+I18=micro810.micro810.prob2/ctu_2.pv,0x664,DINT
+I19=micro810.micro810.prob2/ctu_3.cu,0x648,BOOL
+I20=micro810.micro810.prob2/ctu_3.reset,0x407,BOOL
+I21=micro810.micro810.prob2/ctu_3.pv,0x668,DINT
+[END]

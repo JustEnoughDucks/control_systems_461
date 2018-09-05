@@ -1,0 +1,164 @@
+(****** QuickLD compiler *******************************)
+(****** Copyright Rockwell Automation Canada, Ltd ******)
+(****** ST *********************************************)
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+__EDTB2 := TRUE ;
+IF __EDTB2 THEN
+(* Operator output on : >= with __EDTB1 *)
+__EDTB1 := (MONEYCOUNT >= 50) ;
+ELSE
+__EDTB1 := FALSE ;
+END_IF ;
+__MO_GREATEQUAL_1 := __EDTB1 ;
+_IO_EM_DO_00 := __EDTB1 ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+; (*Pulse detection on : _IO_EM_DI_00 with __MEMO__1___IO_EM_DI_00 *)
+__EDTB3 := (_IO_EM_DI_00 AND NOT(__MEMO__1___IO_EM_DI_00)) ;
+IF __EDTB3 THEN
+MONEYCOUNT := (MONEYCOUNT + 5) ;
+END_IF ;
+__MO_PLUS_1 := __EDTB3 ;
+
+(*************** Code for the end of Rung **************)
+__MEMO__1___IO_EM_DI_00 := _IO_EM_DI_00 ; (*Pulse detection on : _IO_EM_DI_00 with __MEMO__1___IO_EM_DI_00 *)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+; (*Pulse detection on : _IO_EM_DI_01 with __MEMO__2___IO_EM_DI_01 *)
+__EDTB4 := (_IO_EM_DI_01 AND NOT(__MEMO__2___IO_EM_DI_01)) ;
+IF __EDTB4 THEN
+MONEYCOUNT := (MONEYCOUNT + 10) ;
+END_IF ;
+__MO_PLUS_2 := __EDTB4 ;
+
+(*************** Code for the end of Rung **************)
+__MEMO__2___IO_EM_DI_01 := _IO_EM_DI_01 ; (*Pulse detection on : _IO_EM_DI_01 with __MEMO__2___IO_EM_DI_01 *)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+; (*Pulse detection on : _IO_EM_DI_02 with __MEMO__3___IO_EM_DI_02 *)
+__EDTB5 := (_IO_EM_DI_02 AND NOT(__MEMO__3___IO_EM_DI_02)) ;
+IF __EDTB5 THEN
+MONEYCOUNT := (MONEYCOUNT + 25) ;
+END_IF ;
+__MO_PLUS_3 := __EDTB5 ;
+
+(*************** Code for the end of Rung **************)
+__MEMO__3___IO_EM_DI_02 := _IO_EM_DI_02 ; (*Pulse detection on : _IO_EM_DI_02 with __MEMO__3___IO_EM_DI_02 *)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+; (*Pulse detection on : _IO_EM_DI_03 with __MEMO__4___IO_EM_DI_03 *)
+__EDTB7 := (_IO_EM_DI_03 AND NOT(__MEMO__4___IO_EM_DI_03)) ;
+IF __EDTB7 THEN
+(* Operator output on : >= with __EDTB6 *)
+__EDTB6 := (50 >= MONEYCOUNT) ;
+ELSE
+__EDTB6 := FALSE ;
+END_IF ;
+__MO_GREATEQUAL_2 := __EDTB6 ;
+__EDTB8 := __EDTB6 ;
+IF __EDTB8 THEN
+MONEYCOUNT := (MONEYCOUNT - 50) ;
+END_IF ;
+__MO_MINUS_1 := __EDTB8 ;
+(* FB call: TP *)
+TP_1(__EDTB8, T#2S) ;
+_IO_EM_DO_01 := TP_1.Q ;
+
+(*************** Code for the end of Rung **************)
+__MEMO__4___IO_EM_DI_03 := _IO_EM_DI_03 ; (*Pulse detection on : _IO_EM_DI_03 with __MEMO__4___IO_EM_DI_03 *)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+; (*Pulse detection on : _IO_EM_DI_04 with __MEMO__5___IO_EM_DI_04 *)
+__EDTB10 := (_IO_EM_DI_04 AND NOT(__MEMO__5___IO_EM_DI_04)) ;
+IF __EDTB10 THEN
+(* Operator output on : >= with __EDTB9 *)
+__EDTB9 := (MONEYCOUNT >= 50) ;
+ELSE
+__EDTB9 := FALSE ;
+END_IF ;
+__MO_GREATEQUAL_3 := __EDTB9 ;
+__EDTB11 := __EDTB9 ;
+IF __EDTB11 THEN
+MONEYCOUNT := (MONEYCOUNT - 50) ;
+END_IF ;
+__MO_MINUS_2 := __EDTB11 ;
+(* FB call: TP *)
+TP_2(__EDTB11, T#2S) ;
+_IO_EM_DO_02 := TP_2.Q ;
+
+(*************** Code for the end of Rung **************)
+__MEMO__5___IO_EM_DI_04 := _IO_EM_DI_04 ; (*Pulse detection on : _IO_EM_DI_04 with __MEMO__5___IO_EM_DI_04 *)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+; (*Pulse detection on : _IO_EM_DI_05 with __MEMO__6___IO_EM_DI_05 *)
+__EDTB13 := (_IO_EM_DI_05 AND NOT(__MEMO__6___IO_EM_DI_05)) ;
+IF __EDTB13 THEN
+(* Operator output on : >= with __EDTB12 *)
+__EDTB12 := (MONEYCOUNT >= 50) ;
+ELSE
+__EDTB12 := FALSE ;
+END_IF ;
+__MO_GREATEQUAL_4 := __EDTB12 ;
+__EDTB14 := __EDTB12 ;
+IF __EDTB14 THEN
+MONEYCOUNT := (MONEYCOUNT - 50) ;
+END_IF ;
+__MO_MINUS_3 := __EDTB14 ;
+(* FB call: TP *)
+TP_3(__EDTB14, T#2S) ;
+_IO_EM_DO_03 := TP_3.Q ;
+
+(*************** Code for the end of Rung **************)
+__MEMO__6___IO_EM_DI_05 := _IO_EM_DI_05 ; (*Pulse detection on : _IO_EM_DI_05 with __MEMO__6___IO_EM_DI_05 *)
+
+
+(*************** Code for the end of File **************)
+__GL __LG0000 ;
+
+
+
+(*************** Local Symbols table *******************)
+(* __EDTB1 *)
+(* __EDTB2 *)
+(* __MEMO__1___IO_EM_DI_00 *)
+(* __EDTB3 *)
+(* __MEMO__2___IO_EM_DI_01 *)
+(* __EDTB4 *)
+(* __MEMO__3___IO_EM_DI_02 *)
+(* __EDTB5 *)
+(* __MEMO__4___IO_EM_DI_03 *)
+(* __EDTB6 *)
+(* __EDTB7 *)
+(* __EDTB8 *)
+(* __MEMO__5___IO_EM_DI_04 *)
+(* __EDTB9 *)
+(* __EDTB10 *)
+(* __EDTB11 *)
+(* __MEMO__6___IO_EM_DI_05 *)
+(* __EDTB12 *)
+(* __EDTB13 *)
+(* __EDTB14 *)
+

@@ -1,0 +1,83 @@
+(****** QuickLD compiler *******************************)
+(****** Copyright Rockwell Automation Canada, Ltd ******)
+(****** ST *********************************************)
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+__EDTB1 := _IO_EM_DI_00 AND _IO_EM_DI_01 AND NOT(_IO_EM_DI_02) AND NOT(_IO_EM_DI_03) ;
+__EDTB2 := _IO_EM_DI_00 AND _IO_EM_DI_02 AND NOT(_IO_EM_DI_01) AND NOT(_IO_EM_DI_03) ;
+__EDTB3 := _IO_EM_DI_00 AND _IO_EM_DI_03 AND NOT(_IO_EM_DI_01) AND NOT(_IO_EM_DI_02) ;
+__EDTB4 := _IO_EM_DI_01 AND _IO_EM_DI_02 AND NOT(_IO_EM_DI_00) AND NOT(_IO_EM_DI_03) ;
+__EDTB5 := _IO_EM_DI_01 AND _IO_EM_DI_03 AND NOT(_IO_EM_DI_00) AND NOT(_IO_EM_DI_02) ;
+__EDTB6 := _IO_EM_DI_02 AND _IO_EM_DI_03 AND NOT(_IO_EM_DI_00) AND NOT(_IO_EM_DI_01) ;
+__EDTB7 := _IO_EM_DI_00 AND _IO_EM_DI_01 AND _IO_EM_DI_02 AND _IO_EM_DI_03 ;
+__EDTB8 := (__EDTB6 OR __EDTB7) ;
+__EDTB9 := (__EDTB5 OR __EDTB8) ;
+__EDTB10 := (__EDTB4 OR __EDTB9) ;
+__EDTB11 := (__EDTB3 OR __EDTB10) ;
+__EDTB12 := (__EDTB2 OR __EDTB11) ;
+_IO_EM_DO_00 := (__EDTB1 OR __EDTB12) ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+__EDTB13 := _IO_EM_DI_00 AND NOT(_IO_EM_DI_01) AND NOT(_IO_EM_DI_02) AND NOT(_IO_EM_DI_03) ;
+__EDTB14 := _IO_EM_DI_01 AND NOT(_IO_EM_DI_00) AND NOT(_IO_EM_DI_02) AND NOT(_IO_EM_DI_03) ;
+__EDTB15 := _IO_EM_DI_02 AND NOT(_IO_EM_DI_01) AND NOT(_IO_EM_DI_00) AND NOT(_IO_EM_DI_03) ;
+__EDTB16 := _IO_EM_DI_03 AND NOT(_IO_EM_DI_01) AND NOT(_IO_EM_DI_02) AND NOT(_IO_EM_DI_00) ;
+__EDTB17 := _IO_EM_DI_00 AND _IO_EM_DI_01 AND _IO_EM_DI_02 AND NOT(_IO_EM_DI_03) ;
+__EDTB18 := _IO_EM_DI_00 AND _IO_EM_DI_01 AND _IO_EM_DI_02 AND NOT(_IO_EM_DI_03) ;
+__EDTB19 := _IO_EM_DI_00 AND _IO_EM_DI_01 AND _IO_EM_DI_03 AND NOT(_IO_EM_DI_02) ;
+__EDTB20 := _IO_EM_DI_00 AND _IO_EM_DI_03 AND _IO_EM_DI_02 AND NOT(_IO_EM_DI_01) ;
+__EDTB21 := (__EDTB19 OR __EDTB20) ;
+__EDTB22 := _IO_EM_DI_03 AND _IO_EM_DI_01 AND _IO_EM_DI_02 AND NOT(_IO_EM_DI_00) ;
+__EDTB23 := (__EDTB21 OR __EDTB22) ;
+__EDTB24 := (__EDTB18 OR __EDTB23) ;
+__EDTB25 := (__EDTB17 OR __EDTB24) ;
+__EDTB26 := (__EDTB16 OR __EDTB25) ;
+__EDTB27 := (__EDTB15 OR __EDTB26) ;
+__EDTB28 := (__EDTB14 OR __EDTB27) ;
+_IO_EM_DO_02 := (__EDTB13 OR __EDTB28) ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Code for the end of File **************)
+__GL __LG0000 ;
+
+
+
+(*************** Local Symbols table *******************)
+(* __EDTB1 *)
+(* __EDTB2 *)
+(* __EDTB3 *)
+(* __EDTB4 *)
+(* __EDTB5 *)
+(* __EDTB6 *)
+(* __EDTB7 *)
+(* __EDTB8 *)
+(* __EDTB9 *)
+(* __EDTB10 *)
+(* __EDTB11 *)
+(* __EDTB12 *)
+(* __EDTB13 *)
+(* __EDTB14 *)
+(* __EDTB15 *)
+(* __EDTB16 *)
+(* __EDTB17 *)
+(* __EDTB18 *)
+(* __EDTB19 *)
+(* __EDTB20 *)
+(* __EDTB21 *)
+(* __EDTB22 *)
+(* __EDTB23 *)
+(* __EDTB24 *)
+(* __EDTB25 *)
+(* __EDTB26 *)
+(* __EDTB27 *)
+(* __EDTB28 *)
+

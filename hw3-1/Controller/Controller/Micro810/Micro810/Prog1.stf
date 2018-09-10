@@ -1,0 +1,121 @@
+PROGRAM Prog1
+#info= QLD
+BOF
+
+
+(**)
+
+SOR  [0,1] (**) (**)  XIC  [1,0] (*_IO_EM_DI_00*) (*start*)  OTE  [2,0] (*start*) (**)
+EOR [3,0]
+
+
+(**)
+
+SOR  [0,3] (**) (**)  FB  [1,0] (*ANY_TO_INT*) (*6*) ( (*EN:EN*)(**) (**)  , (*i1:*)(*_IO_EM_AI_02*) (**) ; (*ENO:ENO*)(**) (**)  , (*o1:*)(*NSint*) (**) )
+EOR [4,0]
+
+
+(**)
+
+SOR  [0,6] (**) (**)  FB  [1,0] (*ANY_TO_INT*) (*6*) ( (*EN:EN*)(**) (**)  , (*i1:*)(*_IO_EM_AI_03*) (**) ; (*ENO:ENO*)(**) (**)  , (*o1:*)(*EWint*) (**) )
+EOR [4,0]
+
+
+(**)
+
+SOR  [0,9] (**) (**)  FB  [1,0] (*-*) (*1*) ( (*EN:EN*)(**) (**)  , (*i1:*)(*NSint*) (**)  , (*i2:*)(*EWint*) (**) ; (*ENO:ENO*)(**) (**)  , (*o1:*)(*Difference*) (**) )  
+ BST  FB  [4,0] (*=*) (*3*) ( (*EN:EN*)(**) (**)  , (*i1:*)(*Difference*) (**)  , (*i2:*)(*750*) (**) ; (*o1:*)(**) (**) )  
+ BST  OTS  [7,0] (*more*) (**)
+   NXB  
+ BST  OTR  [7,1] (*equal*) (**)
+   NXB  OTR  [7,2] (*less*) (**)
+ BND
+
+ BND
+
+   NXB  
+ BST  FB  [4,3] (*=*) (*3*) ( (*EN:EN*)(**) (**)  , (*i1:*)(*Difference*) (**)  , (*i2:*)(*-750*) (**) ; (*o1:*)(**) (**) )  
+ BST  OTS  [7,3] (*less*) (**)
+   NXB  
+ BST  OTR  [7,4] (*more*) (**)
+   NXB  OTR  [7,5] (*equal*) (**)
+ BND
+
+ BND
+
+   NXB  FB  [4,6] (*=*) (*3*) ( (*EN:EN*)(**) (**)  , (*i1:*)(*Difference*) (**)  , (*i2:*)(*0*) (**) ; (*o1:*)(**) (**) )  
+ BST  OTS  [7,6] (*equal*) (**)
+   NXB  
+ BST  OTR  [7,7] (*less*) (**)
+   NXB  OTR  [7,8] (*more*) (**)
+ BND
+
+ BND
+
+ BND
+
+ BND
+
+EOR [8,0]
+
+
+(**)
+
+SOR  [0,19] (**) (**)  
+ BST  XIF  [1,0] (*redOn*) (**)
+   NXB  XIF  [1,1] (*start*) (**)
+ BND
+  
+ BST  XIO  [2,0] (*greenOn*) (**)  XIC  [3,0] (*more*) (**)  FB  [4,0] (*TP*) (*TP_1*) ( (*IN:IN*)(**) (**)  , (*PT:PT*)(*T#7s*) (**) ; (*Q:Q*)(**) (**)  , (*ET:ET*)(**) (**) )
+   NXB  
+ BST  XIO  [2,2] (*greenOn*) (**)  XIC  [3,2] (*less*) (**)  FB  [4,2] (*TP*) (*TP_2*) ( (*IN:IN*)(**) (**)  , (*PT:PT*)(*T#3s*) (**) ; (*Q:Q*)(**) (**)  , (*ET:ET*)(**) (**) )
+   NXB  XIO  [2,4] (*greenOn*) (**)  XIC  [3,4] (*equal*) (**)  FB  [4,4] (*TP*) (*TP_3*) ( (*IN:IN*)(**) (**)  , (*PT:PT*)(*T#5s*) (**) ; (*Q:Q*)(**) (**)  , (*ET:ET*)(**) (**) )
+ BND
+
+ BND
+  
+ BST  OTE  [7,0] (*_IO_EM_DO_02*) (*green*)
+   NXB  OTE  [7,1] (*greenOn*) (**)
+ BND
+
+EOR [8,0]
+
+
+(**)
+
+SOR  [0,26] (**) (**)  XIF  [1,0] (*greenOn*) (**)  FB  [2,0] (*TP*) (*TP_4*) ( (*IN:IN*)(**) (**)  , (*PT:PT*)(*T#2s*) (**) ; (*Q:Q*)(**) (**)  , (*ET:ET*)(**) (**) )  
+ BST  OTE  [5,0] (*_IO_EM_DO_01*) (*yellow*)
+   NXB  OTE  [5,1] (*yellowOn*) (**)
+ BND
+
+EOR [6,0]
+
+
+(**)
+
+SOR  [0,29] (**) (**)  XIF  [1,0] (*yellowOn*) (**)  
+ BST  XIO  [2,0] (*redOn*) (**)  XIC  [3,0] (*more*) (**)  FB  [4,0] (*TP*) (*TP_5*) ( (*IN:IN*)(**) (**)  , (*PT:PT*)(*T#3s*) (**) ; (*Q:Q*)(**) (**)  , (*ET:ET*)(**) (**) )
+   NXB  
+ BST  XIO  [2,2] (*redOn*) (**)  XIC  [3,2] (*less*) (**)  FB  [4,2] (*TP*) (*TP_6*) ( (*IN:IN*)(**) (**)  , (*PT:PT*)(*T#7s*) (**) ; (*Q:Q*)(**) (**)  , (*ET:ET*)(**) (**) )
+   NXB  XIO  [2,4] (*redOn*) (**)  XIC  [3,4] (*equal*) (**)  FB  [4,4] (*TP*) (*TP_7*) ( (*IN:IN*)(**) (**)  , (*PT:PT*)(*T#5s*) (**) ; (*Q:Q*)(**) (**)  , (*ET:ET*)(**) (**) )
+ BND
+
+ BND
+  
+ BST  OTE  [7,0] (*_IO_EM_DO_00*) (*red*)
+   NXB  OTE  [7,1] (*redOn*) (**)
+ BND
+
+EOR [8,0]
+
+
+(**)
+
+SOR  [0,36] (**) (**)
+EOR [1,0]
+EOF
+#end_info
+#info= ID_MAX
+NextId=6
+#end_info
+END_PROGRAM

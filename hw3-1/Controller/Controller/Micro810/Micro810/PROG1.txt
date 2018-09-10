@@ -1,0 +1,230 @@
+(****** QuickLD compiler *******************************)
+(****** Copyright Rockwell Automation Canada, Ltd ******)
+(****** ST *********************************************)
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+START := _IO_EM_DI_00 ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+__EDTB1 := TRUE ;
+IF __EDTB1 THEN
+NSINT := ANY_TO_INT(_IO_EM_AI_02) ;
+END_IF ;
+__MO_ANY_TO_INT_1 := __EDTB1 ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+__EDTB2 := TRUE ;
+IF __EDTB2 THEN
+EWINT := ANY_TO_INT(_IO_EM_AI_03) ;
+END_IF ;
+__MO_ANY_TO_INT_2 := __EDTB2 ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+__EDTB3 := TRUE ;
+IF __EDTB3 THEN
+DIFFERENCE := (NSINT - EWINT) ;
+END_IF ;
+__MO_MINUS_1 := __EDTB3 ;
+__EDTB5 := __EDTB3 ;
+IF __EDTB5 THEN
+(* Operator output on : = with __EDTB4 *)
+__EDTB4 := (DIFFERENCE = 850) ;
+ELSE
+__EDTB4 := FALSE ;
+END_IF ;
+__MO_EQUAL_1 := __EDTB4 ;
+__EDTB6 := __EDTB4 ;
+IF __EDTB6 THEN
+(*Set coil*)
+MORE := TRUE ;
+END_IF ;
+__EDTB7 := __EDTB4 ;
+IF __EDTB7 THEN
+(*Reset coil*)
+EQUAL := FALSE ;
+END_IF ;
+__EDTB8 := __EDTB4 ;
+IF __EDTB8 THEN
+(*Reset coil*)
+LESS := FALSE ;
+END_IF ;
+__EDTB10 := __EDTB3 ;
+IF __EDTB10 THEN
+(* Operator output on : = with __EDTB9 *)
+__EDTB9 := (DIFFERENCE = -850) ;
+ELSE
+__EDTB9 := FALSE ;
+END_IF ;
+__MO_EQUAL_2 := __EDTB9 ;
+__EDTB11 := __EDTB9 ;
+IF __EDTB11 THEN
+(*Set coil*)
+LESS := TRUE ;
+END_IF ;
+__EDTB12 := __EDTB9 ;
+IF __EDTB12 THEN
+(*Reset coil*)
+MORE := FALSE ;
+END_IF ;
+__EDTB13 := __EDTB9 ;
+IF __EDTB13 THEN
+(*Reset coil*)
+EQUAL := FALSE ;
+END_IF ;
+__EDTB15 := __EDTB3 ;
+IF __EDTB15 THEN
+(* Operator output on : = with __EDTB14 *)
+__EDTB14 := (DIFFERENCE = 0) ;
+ELSE
+__EDTB14 := FALSE ;
+END_IF ;
+__MO_EQUAL_3 := __EDTB14 ;
+__EDTB16 := __EDTB14 ;
+IF __EDTB16 THEN
+(*Set coil*)
+EQUAL := TRUE ;
+END_IF ;
+__EDTB17 := __EDTB14 ;
+IF __EDTB17 THEN
+(*Reset coil*)
+LESS := FALSE ;
+END_IF ;
+__EDTB18 := __EDTB14 ;
+IF __EDTB18 THEN
+(*Reset coil*)
+MORE := FALSE ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+; (*Fall detection on  : REDON with __MEMO__1__REDON *)
+__EDTB19 := (__MEMO__1__REDON AND NOT(REDON)) ;
+; (*Fall detection on  : START with __MEMO__2__START *)
+__EDTB20 := (__MEMO__2__START AND NOT(START)) ;
+__EDTB21 := (__EDTB19 OR __EDTB20) ;
+(* FB call: TP *)
+TP_1(__EDTB21 AND NOT(GREENON) AND MORE, T#7S) ;
+__EDTB22 := TP_1.Q ;
+(* FB call: TP *)
+TP_2(__EDTB21 AND NOT(GREENON) AND LESS, T#3S) ;
+__EDTB23 := TP_2.Q ;
+(* FB call: TP *)
+TP_3(__EDTB21 AND NOT(GREENON) AND EQUAL, T#5S) ;
+__EDTB24 := TP_3.Q ;
+__EDTB25 := (__EDTB23 OR __EDTB24) ;
+__EDTB26 := (__EDTB22 OR __EDTB25) ;
+_IO_EM_DO_02 := __EDTB26 ;
+GREENON := __EDTB26 ;
+
+(*************** Code for the end of Rung **************)
+__MEMO__1__REDON := REDON ; (*Fall detection on  : REDON with __MEMO__1__REDON *)
+__MEMO__2__START := START ; (*Fall detection on  : START with __MEMO__2__START *)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+; (*Fall detection on  : GREENON with __MEMO__3__GREENON *)
+(* FB call: TP *)
+TP_4((__MEMO__3__GREENON AND NOT(GREENON)), T#2S) ;
+_IO_EM_DO_01 := TP_4.Q ;
+YELLOWON := TP_4.Q ;
+
+(*************** Code for the end of Rung **************)
+__MEMO__3__GREENON := GREENON ; (*Fall detection on  : GREENON with __MEMO__3__GREENON *)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+; (*Fall detection on  : YELLOWON with __MEMO__4__YELLOWON *)
+__EDTB27 := (__MEMO__4__YELLOWON AND NOT(YELLOWON)) ;
+(* FB call: TP *)
+TP_5(__EDTB27 AND NOT(REDON) AND MORE, T#3S) ;
+__EDTB28 := TP_5.Q ;
+(* FB call: TP *)
+TP_6(__EDTB27 AND NOT(REDON) AND LESS, T#7S) ;
+__EDTB29 := TP_6.Q ;
+(* FB call: TP *)
+TP_7(__EDTB27 AND NOT(REDON) AND EQUAL, T#5S) ;
+__EDTB30 := TP_7.Q ;
+__EDTB31 := (__EDTB29 OR __EDTB30) ;
+__EDTB32 := (__EDTB28 OR __EDTB31) ;
+_IO_EM_DO_00 := __EDTB32 ;
+REDON := __EDTB32 ;
+
+(*************** Code for the end of Rung **************)
+__MEMO__4__YELLOWON := YELLOWON ; (*Fall detection on  : YELLOWON with __MEMO__4__YELLOWON *)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Code for the end of File **************)
+__GL __LG0000 ;
+
+
+
+(*************** Local Symbols table *******************)
+(* __EDTB1 *)
+(* __EDTB2 *)
+(* __EDTB3 *)
+(* __EDTB4 *)
+(* __EDTB5 *)
+(* __EDTB6 *)
+(* __EDTB7 *)
+(* __EDTB8 *)
+(* __EDTB9 *)
+(* __EDTB10 *)
+(* __EDTB11 *)
+(* __EDTB12 *)
+(* __EDTB13 *)
+(* __EDTB14 *)
+(* __EDTB15 *)
+(* __EDTB16 *)
+(* __EDTB17 *)
+(* __EDTB18 *)
+(* __MEMO__1__REDON *)
+(* __EDTB19 *)
+(* __MEMO__2__START *)
+(* __EDTB20 *)
+(* __EDTB21 *)
+(* __EDTB22 *)
+(* __EDTB23 *)
+(* __EDTB24 *)
+(* __EDTB25 *)
+(* __EDTB26 *)
+(* __MEMO__3__GREENON *)
+(* __MEMO__4__YELLOWON *)
+(* __EDTB27 *)
+(* __EDTB28 *)
+(* __EDTB29 *)
+(* __EDTB30 *)
+(* __EDTB31 *)
+(* __EDTB32 *)
+

@@ -45,7 +45,7 @@ __MO_MINUS_1 := __EDTB3 ;
 __EDTB5 := __EDTB3 ;
 IF __EDTB5 THEN
 (* Operator output on : = with __EDTB4 *)
-__EDTB4 := (DIFFERENCE = 850) ;
+__EDTB4 := (DIFFERENCE = 750) ;
 ELSE
 __EDTB4 := FALSE ;
 END_IF ;
@@ -68,7 +68,7 @@ END_IF ;
 __EDTB10 := __EDTB3 ;
 IF __EDTB10 THEN
 (* Operator output on : = with __EDTB9 *)
-__EDTB9 := (DIFFERENCE = -850) ;
+__EDTB9 := (DIFFERENCE = -750) ;
 ELSE
 __EDTB9 := FALSE ;
 END_IF ;

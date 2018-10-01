@@ -25,7 +25,7 @@ mag2cA = abs((-5/194 + 155/583*j));
 
 G3 = zpk([],[-2 -7 -10 -15], 100000);
 DC3 = evalfr(G3, 0);
-G3first = zpk([],-2, DC3);
+G3first = zpk([],-2, DC3*2);
 
 t = [0:0.1:10];
 y3first = step(G3first, t);
@@ -38,7 +38,7 @@ figure;
 G4 = zpk([],[(-1.5000 - 3.5707j) (-1.5000 + 3.5707j) -20 -50],100000);
 DC4 = evalfr(G4, 0)
 G4temp = zpk([],[-1.5000 - 3.5707j -1.5000 + 3.5707j], DC4);
-G4first = zpk([],[-1.5000 - 3.5707j -1.5000 + 3.5707j], DC4/(evalfr(G4temp,0)));
+G4first = zpk([],[-1.5000 - 3.5707j -1.5000 + 3.5707j], DC4*6.66./(evalfr(G4temp,0)));
 
 y4first = step(G4first, t);
 y4fourth = step(G4, t);

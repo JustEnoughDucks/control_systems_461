@@ -1,0 +1,347 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>hw5</title><meta name="generator" content="MATLAB 9.4"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-10-03"><meta name="DC.source" content="hw5.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Control Systems Homework 5 Problem 1</a></li><li><a href="#2">Control Systems Homework 5 Problem 2</a></li><li><a href="#3">Control Systems Homework 5 Problem 3</a></li><li><a href="#4">Control Systems Homework 5 Problem 4</a></li><li><a href="#5">Control Systems Homework 5 Problem 5</a></li></ul></div><h2 id="1">Control Systems Homework 5 Problem 1</h2><pre class="codeinput">A1 = [-20, -2, 0, 0; 10, 0, -10, 0; 0, 5, -100, -5; 0, 0, 4, 0];
+B1 = [2;0;0;0];
+C1 = [0,1,0,0];
+D1 = [0];
+G1 = ss(A1,B1,C1,D1);
+tf(G1)
+zpk(G1)
+
+t1 = 0:0.01:10;
+y1 = step(G1,t1);
+plot(t1, y1);
+xlabel(<span class="string">'Time (seconds)'</span>);
+ylabel(<span class="string">'Gain'</span>);
+</pre><pre class="codeoutput">
+ans =
+ 
+           20 s^2 + 2000 s + 400
+  ---------------------------------------
+  s^4 + 120 s^3 + 2090 s^2 + 3400 s + 400
+ 
+Continuous-time transfer function.
+
+
+ans =
+ 
+          20 (s+99.8) (s+0.2004)
+  --------------------------------------
+  (s+99.3) (s+18.91) (s+1.67) (s+0.1276)
+ 
+Continuous-time zero/pole/gain model.
+
+</pre><img vspace="5" hspace="5" src="hw5_01.png" alt=""> <h2 id="2">Control Systems Homework 5 Problem 2</h2><pre class="codeinput">A2 = [-20, -2, 0, 0; 10, 0, -10, 0; 0, 5, -100, -5; 0, 0, 4, 0];
+B2 = [2;0;0;0];
+C2 = [0,0,0,1];
+D2 = [0];
+G2 = ss(A2,B2,C2,D2);
+tf(G2)
+zpk(G2)
+
+t2 = 0:0.01:50;
+y2 = step(G2,t2);
+figure;
+plot(t2, abs(y2));
+xlabel(<span class="string">'Time (seconds)'</span>);
+ylabel(<span class="string">'Gain'</span>);
+</pre><pre class="codeoutput">
+ans =
+ 
+                    400
+  ---------------------------------------
+  s^4 + 120 s^3 + 2090 s^2 + 3400 s + 400
+ 
+Continuous-time transfer function.
+
+
+ans =
+ 
+                   400
+  --------------------------------------
+  (s+99.3) (s+18.91) (s+1.67) (s+0.1276)
+ 
+Continuous-time zero/pole/gain model.
+
+</pre><img vspace="5" hspace="5" src="hw5_02.png" alt=""> <h2 id="3">Control Systems Homework 5 Problem 3</h2><pre class="codeinput">A3 = [0, -10, 0, 0; 100, -0.2, -100, 0; 0, 5, 0, 5; 0, 0, -50, -83.33];
+B3 = [10;0;0;0];
+C3 = [0,1,0,0];
+D3 = [0];
+G3 = ss(A3,B3,C3,D3);
+tf(G3)
+zpk(G3)
+
+t3 = 0:0.01:10;
+y3 = step(G3,t3);
+figure;
+plot(t3, abs(y3));
+xlabel(<span class="string">'Time (seconds)'</span>);
+ylabel(<span class="string">'Gain'</span>);
+</pre><pre class="codeoutput">
+ans =
+ 
+            1000 s^2 + 83330 s + 2.5e05
+  -----------------------------------------------
+  s^4 + 83.53 s^3 + 1767 s^2 + 1.25e05 s + 2.5e05
+ 
+Continuous-time transfer function.
+
+
+ans =
+ 
+          1000 (s+3.117) (s+80.21)
+  ----------------------------------------
+  (s+80.42) (s+2.053) (s^2 + 1.06s + 1514)
+ 
+Continuous-time zero/pole/gain model.
+
+</pre><img vspace="5" hspace="5" src="hw5_03.png" alt=""> <h2 id="4">Control Systems Homework 5 Problem 4</h2><pre class="codeinput">C4 = 0.01; R41 = 10; R42 = 100;
+A4 = [-1/(C4*R42), -1/(C4*R41), 0; 1/(C4*R41), -1/(C4*R42), -1/(C4*R41); 0, 1/(C4*R41), -1/(C4*R42)-1/(C4*R41)];
+B4 = [1/(C4*R41); 0; 0];
+C4 = [0,0,1];
+D4 = [0];
+G4 = ss(A4,B4,C4,D4);
+tf(G4)
+zpk(G4)
+
+t4 = 0:0.01:2;
+y4 = step(G4,t4);
+figure;
+plot(t4, abs(y4));
+xlabel(<span class="string">'Time (seconds)'</span>);
+ylabel(<span class="string">'Gain'</span>);
+</pre><pre class="codeoutput">
+ans =
+ 
+             1000
+  ---------------------------
+  s^3 + 13 s^2 + 223 s + 1211
+ 
+Continuous-time transfer function.
+
+
+ans =
+ 
+                1000
+  --------------------------------
+  (s+6.698) (s^2 + 6.302s + 180.8)
+ 
+Continuous-time zero/pole/gain model.
+
+</pre><img vspace="5" hspace="5" src="hw5_04.png" alt=""> <h2 id="5">Control Systems Homework 5 Problem 5</h2><pre class="codeinput">C5 = 0.01; R51 = 10; R52 = 100;
+A5 = [-1/(C5*R52), -1/(C5*R51), 0,  0,  0,  0,  0,  0,  0,  0;<span class="keyword">...</span>
+        1/(C5*R51), -1/(C5*R52), -1/(C5*R51),   0,  0,  0,  0   0,  0,  0;<span class="keyword">...</span>
+        0, 1/(C5*R51), -1/(C5*R52), -1/(C5*R51),    0,  0,  0,  0,  0,  0;<span class="keyword">...</span>
+        0,  0,   1/(C5*R51), -1/(C5*R52), -1/(C5*R51),  0,  0,  0,  0,  0;<span class="keyword">...</span>
+        0,  0,  0,  1/(C5*R51), -1/(C5*R52), -1/(C5*R51), 0,  0,  0,  0;<span class="keyword">...</span>
+        0,  0,  0,  0, 1/(C5*R51), -1/(C5*R52), -1/(C5*R51), 0,  0,  0;<span class="keyword">...</span>
+        0,  0,  0,  0,  0,  1/(C5*R51), -1/(C5*R52), -1/(C5*R51),  0,  0;<span class="keyword">...</span>
+        0,  0,  0,  0,  0,  0,  1/(C5*R51), -1/(C5*R52), -1/(C5*R51),  0;<span class="keyword">...</span>
+        0,  0,  0,  0,  0,  0,  0,  1/(C5*R51), -1/(C5*R52), -1/(C5*R51);<span class="keyword">...</span>
+        0,  0,  0,  0,  0,  0,  0,  0,  1/(C5*R51), -1/(C5*R52) - 1/(C5*R51)];
+B5 = [(1/(C5*R51)); 0; 0; 0; 0; 0; 0; 0; 0; 0];
+C5 = [0,0,0,0,0,0,0,0,0,1];
+D5 = [0];
+G5 = ss(A5,B5,C5,D5);
+tf(G5)
+zpk(G5)
+
+t5 = 0:0.01:3;
+y5 = step(G5,t5);
+figure;
+plot(t5, abs(y5));
+xlabel(<span class="string">'Time (seconds)'</span>);
+ylabel(<span class="string">'Gain'</span>);
+</pre><pre class="codeoutput">
+ans =
+ 
+                                        
+                                    1e10
+                                        
+  ------------------------------------------------------------------------
+                                                                          
+  s^10 + 20 s^9 + 1035 s^8 + 1.568e04 s^7 + 3.623e05 s^6 + 4e06 s^5       
+                                                                          
+          + 5.004e07 s^4 + 3.669e08 s^3 + 2.335e09 s^2 + 8.752e09 s       
+                                                                          
+                                                                + 1.674e10
+                                                                          
+ 
+Continuous-time transfer function.
+
+
+ans =
+ 
+                                        
+                                   1e+10
+                                        
+  ------------------------------------------------------------------------
+                                                                          
+  (s^2 + 6.74s + 16.56) (s^2 + 4.863s + 62.3) (s^2 + 3.547s + 160.5)      
+                                                                          
+                               (s^2 + 2.68s + 275.8) (s^2 + 2.17s + 366.7)
+                                                                          
+ 
+Continuous-time zero/pole/gain model.
+
+</pre><img vspace="5" hspace="5" src="hw5_05.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2018a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Control Systems Homework 5 Problem 1
+A1 = [-20, -2, 0, 0; 10, 0, -10, 0; 0, 5, -100, -5; 0, 0, 4, 0];
+B1 = [2;0;0;0];
+C1 = [0,1,0,0];
+D1 = [0];
+G1 = ss(A1,B1,C1,D1);
+tf(G1)
+zpk(G1)
+
+t1 = 0:0.01:10;
+y1 = step(G1,t1);
+plot(t1, y1);
+xlabel('Time (seconds)');
+ylabel('Gain');
+
+%% Control Systems Homework 5 Problem 2
+A2 = [-20, -2, 0, 0; 10, 0, -10, 0; 0, 5, -100, -5; 0, 0, 4, 0];
+B2 = [2;0;0;0];
+C2 = [0,0,0,1];
+D2 = [0];
+G2 = ss(A2,B2,C2,D2);
+tf(G2)
+zpk(G2)
+
+t2 = 0:0.01:50;
+y2 = step(G2,t2);
+figure;
+plot(t2, abs(y2));
+xlabel('Time (seconds)');
+ylabel('Gain');
+
+
+%% Control Systems Homework 5 Problem 3
+A3 = [0, -10, 0, 0; 100, -0.2, -100, 0; 0, 5, 0, 5; 0, 0, -50, -83.33];
+B3 = [10;0;0;0];
+C3 = [0,1,0,0];
+D3 = [0];
+G3 = ss(A3,B3,C3,D3);
+tf(G3)
+zpk(G3)
+
+t3 = 0:0.01:10;
+y3 = step(G3,t3);
+figure;
+plot(t3, abs(y3));
+xlabel('Time (seconds)');
+ylabel('Gain');
+
+%% Control Systems Homework 5 Problem 4
+C4 = 0.01; R41 = 10; R42 = 100;
+A4 = [-1/(C4*R42), -1/(C4*R41), 0; 1/(C4*R41), -1/(C4*R42), -1/(C4*R41); 0, 1/(C4*R41), -1/(C4*R42)-1/(C4*R41)];
+B4 = [1/(C4*R41); 0; 0];
+C4 = [0,0,1];
+D4 = [0];
+G4 = ss(A4,B4,C4,D4);
+tf(G4)
+zpk(G4)
+
+t4 = 0:0.01:2;
+y4 = step(G4,t4);
+figure;
+plot(t4, abs(y4));
+xlabel('Time (seconds)');
+ylabel('Gain');
+
+%% Control Systems Homework 5 Problem 5
+C5 = 0.01; R51 = 10; R52 = 100;
+A5 = [-1/(C5*R52), -1/(C5*R51), 0,  0,  0,  0,  0,  0,  0,  0;...
+        1/(C5*R51), -1/(C5*R52), -1/(C5*R51),   0,  0,  0,  0   0,  0,  0;...
+        0, 1/(C5*R51), -1/(C5*R52), -1/(C5*R51),    0,  0,  0,  0,  0,  0;...
+        0,  0,   1/(C5*R51), -1/(C5*R52), -1/(C5*R51),  0,  0,  0,  0,  0;...
+        0,  0,  0,  1/(C5*R51), -1/(C5*R52), -1/(C5*R51), 0,  0,  0,  0;...
+        0,  0,  0,  0, 1/(C5*R51), -1/(C5*R52), -1/(C5*R51), 0,  0,  0;...
+        0,  0,  0,  0,  0,  1/(C5*R51), -1/(C5*R52), -1/(C5*R51),  0,  0;...
+        0,  0,  0,  0,  0,  0,  1/(C5*R51), -1/(C5*R52), -1/(C5*R51),  0;...
+        0,  0,  0,  0,  0,  0,  0,  1/(C5*R51), -1/(C5*R52), -1/(C5*R51);...
+        0,  0,  0,  0,  0,  0,  0,  0,  1/(C5*R51), -1/(C5*R52) - 1/(C5*R51)];
+B5 = [(1/(C5*R51)); 0; 0; 0; 0; 0; 0; 0; 0; 0];
+C5 = [0,0,0,0,0,0,0,0,0,1];
+D5 = [0];
+G5 = ss(A5,B5,C5,D5);
+tf(G5)
+zpk(G5)
+
+t5 = 0:0.01:3;
+y5 = step(G5,t5);
+figure;
+plot(t5, abs(y5));
+xlabel('Time (seconds)');
+ylabel('Gain');
+
+##### SOURCE END #####
+--></body></html>

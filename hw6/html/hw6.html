@@ -1,0 +1,308 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>hw6</title><meta name="generator" content="MATLAB 9.4"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-10-10"><meta name="DC.source" content="hw6.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Control Systems HW6 Problem 1</a></li><li><a href="#2">Control Systems HW6 Problem 2</a></li><li><a href="#3">Control Systems HW6 Problem 3</a></li><li><a href="#4">Control Systems HW6 Problem 4</a></li></ul></div><h2 id="1">Control Systems HW6 Problem 1</h2><pre class="codeinput">K1 = 100;   M1 = 1;   B1 = 2;
+
+A1 =   [0,  0,  0,  1,  0,  0;<span class="keyword">...</span>
+        0,  0,  0,  0,  1,  0;<span class="keyword">...</span>
+        0,  0,  0,  0,  0,  1;<span class="keyword">...</span>
+        -2*K1/M1,   K1/M1,  0,  -2*B1/M1,   0,  B1/M1;<span class="keyword">...</span>
+        K1/M1,  -2*K1/M1,   K1/M1,  0,  0,  0;<span class="keyword">...</span>
+        0,  K1/M1,  -K1/M1, B1/M1, 0,  -B1/M1;];
+B1 =   [0;  0;  0;  0;  0;  1/M1];
+C1 =   [0,  0,  1,  0,  0,  0];
+D1 =   [0];
+
+G1 = ss(A1,B1,C1,D1);
+tf(G1)
+zpk(G1)
+
+t1 = 0:0.01:20;
+y1 = step(G1,t1);
+plot(t1, y1);
+xlabel(<span class="string">'Time (seconds)'</span>);
+ylabel(<span class="string">'Gain'</span>);
+</pre><pre class="codeoutput">
+ans =
+ 
+             s^4 + 4 s^3 + 400 s^2 + 800 s + 30000
+  ------------------------------------------------------------
+  s^6 + 6 s^5 + 504 s^4 + 2000 s^3 + 60800 s^2 + 6e04 s + 1e06
+ 
+Continuous-time transfer function.
+
+
+ans =
+ 
+             (s^2 + 2.042s + 102.1) (s^2 + 1.958s + 293.9)
+  --------------------------------------------------------------------
+  (s^2 + 0.5498s + 19.86) (s^2 + 4.714s + 157) (s^2 + 0.7358s + 320.7)
+ 
+Continuous-time zero/pole/gain model.
+
+</pre><img vspace="5" hspace="5" src="hw6_01.png" alt=""> <h2 id="2">Control Systems HW6 Problem 2</h2><pre class="codeinput">K2 = 100;   M2 = 1;   B2 = 2;
+
+A2 =   [0,  0,  0,  0,  1,  0,  0,  0;  <span class="keyword">...</span>
+        0,  0,  0,  0,  0,  1,  0,  0;  <span class="keyword">...</span>
+        0,  0,  0,  0,  0,  0,  1,  0;  <span class="keyword">...</span>
+        0,  0,  0,  0,  0,  0,  0,  1;  <span class="keyword">...</span>
+        -2*K2/M2,   K2/M2,  0,  0,  -2*B2/M2, B2/M2,    0,  0;  <span class="keyword">...</span>
+        K2/M2,  -2*K2/M2,   K2/M2,  0,  B2/M2, -2*B2/M2,    B2/M2,  0;  <span class="keyword">...</span>
+        0,  K2/M2,  -2*K2/M2,   K2/M2,  0,  B2/M2,  -2*B2/M2,   B2/M2;  <span class="keyword">...</span>
+        0,  0,  K2/M2,  -K2/M2, 0,  0,  -B2/M2, B2/M2]
+B2 =   [0;  0;  0;  0;  0;  0;  0;  1/M2];
+C2 =   [0, 0, 0, 1, 0, 0, 0, 0];
+D2 =   [0];
+G2 = ss(A2,B2,C2,D2);
+tf(G2)
+zpk(G2)
+
+t2 = 0:0.01:100;
+y2 = step(G2,t2);
+figure;
+plot(t2, abs(y2));
+xlabel(<span class="string">'Time (seconds)'</span>);
+ylabel(<span class="string">'Gain'</span>);
+</pre><pre class="codeoutput">
+A2 =
+
+     0     0     0     0     1     0     0     0
+     0     0     0     0     0     1     0     0
+     0     0     0     0     0     0     1     0
+     0     0     0     0     0     0     0     1
+  -200   100     0     0    -4     2     0     0
+   100  -200   100     0     2    -4     2     0
+     0   100  -200   100     0     2    -4     2
+     0     0   100  -100     0     0    -2     2
+
+
+ans =
+ 
+                                                                       
+     s^6 + 12 s^5 + 640 s^4 + 4032 s^3 + 1.048e05 s^2 + 2.4e05 s + 4e06
+                                                                       
+  ------------------------------------------------------------------------
+                                                                          
+  s^8 + 10 s^7 + 720 s^6 + 3984 s^5 + 1.524e05 s^4 + 3.584e05 s^3         
+                                                                          
+                                                + 1e07 s^2 + 4e06 s + 1e08
+                                                                          
+ 
+Continuous-time transfer function.
+
+
+ans =
+ 
+                                                                     
+       (s^2 + 1.172s + 58.58) (s^2 + 4s + 200) (s^2 + 6.828s + 341.4)
+                                                                     
+  ------------------------------------------------------------------------
+                                                                          
+  (s^2 + 0.03365s + 12.12) (s^2 + 0.641s + 101.8) (s^2 + 2.915s + 232.2)  
+                                                                          
+                                                     (s^2 + 6.41s + 348.8)
+                                                                          
+ 
+Continuous-time zero/pole/gain model.
+
+</pre><img vspace="5" hspace="5" src="hw6_02.png" alt=""> <h2 id="3">Control Systems HW6 Problem 3</h2><pre class="codeinput">K3 = 5; J3 = 2;
+
+A3 =   [0,  0,  0,  1,  0,  0;  <span class="keyword">...</span>
+        0,  0,  0,  0,  1,  0;  <span class="keyword">...</span>
+        0,  0,  0,  0,  0,  1;  <span class="keyword">...</span>
+       -5^4*K3/(J3*5^4),   5^4*K3/(J3*5^4),    0,  0,  0,  0;  <span class="keyword">...</span>
+        (5^4*K3) /(J3*5^2),  -(K3*5^4 + 5^2*K3)/(J3*5^2),    K3*5^2/(J3*5^2),    0,  0,  0;  <span class="keyword">...</span>
+        0,  5^2*K3/(J3),    -(5^2*K3 + K3)/(J3),    0,  0,  0];
+B3 =   [0;  0;  0;  1/(5^4*J3);  0;  0];
+C3 =   [0, 0, 1, 0, 0, 0];
+D3 =   [0];
+G3 = ss(A3,B3,C3,D3);
+tf(G3)
+zpk(G3)
+</pre><pre class="codeoutput">
+ans =
+ 
+                                        
+                                   3.125
+                                        
+  ------------------------------------------------------------------------
+                                                                          
+  s^6 + 5.128e-17 s^5 + 132.5 s^4 + 9.55e-15 s^3 + 4238 s^2 + 3.659e-13 s 
+                                                                          
+                                                                   + 15.62
+                                                                          
+ 
+Continuous-time transfer function.
+
+
+ans =
+ 
+                     3.125
+  --------------------------------------------
+  (s^2 + 0.003688) (s^2 + 53.93) (s^2 + 78.57)
+ 
+Continuous-time zero/pole/gain model.
+
+</pre><h2 id="4">Control Systems HW6 Problem 4</h2><pre class="codeinput">G4 = tf([132666],[1 393.646 79.8463 39401.9])
+
+t4 = 0:0.1:100;
+y4 = step(G4,t4);
+figure;
+plot(t4, abs(y4));
+xlabel(<span class="string">'Time (seconds)'</span>);
+ylabel(<span class="string">'Gain'</span>);
+</pre><pre class="codeoutput">
+G4 =
+ 
+                132666
+  -----------------------------------
+  s^3 + 393.6 s^2 + 79.85 s + 3.94e04
+ 
+Continuous-time transfer function.
+
+</pre><img vspace="5" hspace="5" src="hw6_03.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2018a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Control Systems HW6 Problem 1
+K1 = 100;   M1 = 1;   B1 = 2;
+
+A1 =   [0,  0,  0,  1,  0,  0;...
+        0,  0,  0,  0,  1,  0;...
+        0,  0,  0,  0,  0,  1;...
+        -2*K1/M1,   K1/M1,  0,  -2*B1/M1,   0,  B1/M1;...
+        K1/M1,  -2*K1/M1,   K1/M1,  0,  0,  0;...
+        0,  K1/M1,  -K1/M1, B1/M1, 0,  -B1/M1;];
+B1 =   [0;  0;  0;  0;  0;  1/M1];
+C1 =   [0,  0,  1,  0,  0,  0];
+D1 =   [0];
+
+G1 = ss(A1,B1,C1,D1);
+tf(G1)
+zpk(G1)
+
+t1 = 0:0.01:20;
+y1 = step(G1,t1);
+plot(t1, y1);
+xlabel('Time (seconds)');
+ylabel('Gain');
+
+%% Control Systems HW6 Problem 2
+
+K2 = 100;   M2 = 1;   B2 = 2;
+
+A2 =   [0,  0,  0,  0,  1,  0,  0,  0;  ...
+        0,  0,  0,  0,  0,  1,  0,  0;  ...
+        0,  0,  0,  0,  0,  0,  1,  0;  ...
+        0,  0,  0,  0,  0,  0,  0,  1;  ...
+        -2*K2/M2,   K2/M2,  0,  0,  -2*B2/M2, B2/M2,    0,  0;  ...
+        K2/M2,  -2*K2/M2,   K2/M2,  0,  B2/M2, -2*B2/M2,    B2/M2,  0;  ...
+        0,  K2/M2,  -2*K2/M2,   K2/M2,  0,  B2/M2,  -2*B2/M2,   B2/M2;  ...
+        0,  0,  K2/M2,  -K2/M2, 0,  0,  -B2/M2, B2/M2]
+B2 =   [0;  0;  0;  0;  0;  0;  0;  1/M2];
+C2 =   [0, 0, 0, 1, 0, 0, 0, 0];
+D2 =   [0];
+G2 = ss(A2,B2,C2,D2);
+tf(G2)
+zpk(G2)
+
+t2 = 0:0.01:100;
+y2 = step(G2,t2);
+figure;
+plot(t2, abs(y2));
+xlabel('Time (seconds)');
+ylabel('Gain');
+
+%% Control Systems HW6 Problem 3
+
+K3 = 5; J3 = 2;
+
+A3 =   [0,  0,  0,  1,  0,  0;  ...
+        0,  0,  0,  0,  1,  0;  ...
+        0,  0,  0,  0,  0,  1;  ...
+       -5^4*K3/(J3*5^4),   5^4*K3/(J3*5^4),    0,  0,  0,  0;  ...
+        (5^4*K3) /(J3*5^2),  -(K3*5^4 + 5^2*K3)/(J3*5^2),    K3*5^2/(J3*5^2),    0,  0,  0;  ...
+        0,  5^2*K3/(J3),    -(5^2*K3 + K3)/(J3),    0,  0,  0];
+B3 =   [0;  0;  0;  1/(5^4*J3);  0;  0];
+C3 =   [0, 0, 1, 0, 0, 0];
+D3 =   [0];
+G3 = ss(A3,B3,C3,D3);
+tf(G3)
+zpk(G3)
+
+%% Control Systems HW6 Problem 4
+
+G4 = tf([132666],[1 393.646 79.8463 39401.9])
+
+t4 = 0:0.1:100;
+y4 = step(G4,t4);
+figure;
+plot(t4, abs(y4));
+xlabel('Time (seconds)');
+ylabel('Gain');
+
+##### SOURCE END #####
+--></body></html>

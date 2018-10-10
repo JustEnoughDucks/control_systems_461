@@ -1,0 +1,71 @@
+PROGRAM Prog1
+(*Input Pulse Edge Function*)
+IF( NOT(old5) and _IO_EM_DI_00) THEN
+   moneyCount := moneyCount + 5;
+END_IF;
+
+IF( NOT(old10) and _IO_EM_DI_01) THEN
+   moneyCount := moneyCount + 10;
+END_IF;
+
+IF( NOT(old25) and _IO_EM_DI_02) THEN
+   moneyCount := moneyCount + 25;
+END_IF;
+
+old5 := _IO_EM_DI_00;
+old10 := _IO_EM_DI_01;
+old25 := _IO_EM_DI_02;
+
+(*Nickel Dispensing Function*)
+IF(moneyCount > 0 and dispensing) THEN
+	TON_1(not(TON_1.Q), T#500ms);
+	IF(TON_1.Q) THEN
+      _IO_EM_DO_00 := not(_IO_EM_DO_00);
+		IF(_IO_EM_DO_00) THEN
+        	moneyCount := moneyCount - 5;
+        END_IF; 
+   	END_IF;
+END_IF;
+
+(*Buying Function*)
+IF(NOT(oldYellow) and _IO_EM_DI_03 and moneyCount >= 50) THEN
+	moneyCount := moneyCount - 50;
+	sodaSelect := 1;
+	dispensing := TRUE;
+END_IF;
+
+IF(NOT(oldGreen) and _IO_EM_DI_04 and moneyCount >= 75) THEN
+	moneyCount := moneyCount - 75;
+	sodaSelect := 2;
+	dispensing := TRUE;
+END_IF;
+
+IF(NOT(oldBlue) and _IO_EM_DI_05 and moneyCount >= 75) THEN
+	moneyCount := moneyCount - 100;
+	sodaSelect := 3;
+	dispensing := TRUE;
+END_IF;
+
+(*Red Light Function*)
+IF(moneyCount >= 50 and NOT(dispensing)) THEN
+	_IO_EM_DO_00 := TRUE;
+END_IF;
+
+IF(moneyCount = 0) THEN
+	dispensing := FALSE;
+	_IO_EM_DO_00 := FALSE;
+END_IF;
+
+(*Sode Dispense Function*)
+TP_1(sodaSelect = 1, T#2s);
+TP_2(sodaSelect = 2, T#2s);
+TP_3(sodaSelect = 3, T#2s);
+
+_IO_EM_DO_01 := TP_1.Q;
+_IO_EM_DO_02 := TP_2.Q;
+_IO_EM_DO_03 := TP_3.Q;
+
+IF(sodaSelect <> 0) THEN
+	sodaSelect := 0;
+END_IF;
+END_PROGRAM

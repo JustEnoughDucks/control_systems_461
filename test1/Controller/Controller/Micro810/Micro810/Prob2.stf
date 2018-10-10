@@ -1,0 +1,203 @@
+PROGRAM Prob2
+#info= QLD
+BOF
+
+
+(**)
+
+SOR  [0,1] (*Start*) (**)
+EOR [1,0]
+
+
+(**)
+
+SOR  [0,2] (**) (**)  XIP  [1,0] (*_IO_EM_DI_00*) (*cent5*)  FB  [2,0] (*+*) (*3*) ( (*EN:EN*)(**) (**)  , (*i1:*)(*moneyCount*) (**)  , (*i2:*)(*5*) (**) ; (*ENO:ENO*)(**) (**)  , (*o1:*)(*moneyCount*) (**) )
+EOR [5,0]
+
+
+(**)
+
+SOR  [0,6] (**) (**)  XIP  [1,0] (*_IO_EM_DI_01*) (*cent10*)  FB  [2,0] (*+*) (*3*) ( (*EN:EN*)(**) (**)  , (*i1:*)(*moneyCount*) (**)  , (*i2:*)(*10*) (**) ; (*ENO:ENO*)(**) (**)  , (*o1:*)(*moneyCount*) (**) )
+EOR [5,0]
+
+
+(**)
+
+SOR  [0,10] (**) (**)  XIP  [1,0] (*_IO_EM_DI_02*) (*cent25*)  FB  [2,0] (*+*) (*3*) ( (*EN:EN*)(**) (**)  , (*i1:*)(*moneyCount*) (**)  , (*i2:*)(*25*) (**) ; (*ENO:ENO*)(**) (**)  , (*o1:*)(*moneyCount*) (**) )
+EOR [5,0]
+
+
+(**)
+
+SOR  [0,14] (**) (**)  XIP  [1,0] (*_IO_EM_DI_03*) (*yellowSoda*)  FB  [2,0] (*>=*) (*6*) ( (*EN:EN*)(**) (**)  , (*i1:*)(*moneyCount*) (**)  , (*i2:*)(*50*) (**) ; (*o1:*)(**) (**) )  FB  [5,0] (*-*) (*7*) ( (*EN:EN*)(**) (**)  , (*i1:*)(*moneyCount*) (**)  , (*i2:*)(*50*) (**) ; (*ENO:ENO*)(**) (**)  , (*o1:*)(*moneyCount*) (**) )  FB  [8,0] (*TP*) (*TP_1*) ( (*IN:IN*)(**) (**)  , (*PT:PT*)(*T#2s*) (**) ; (*Q:Q*)(**) (**)  , (*ET:ET*)(*yellowTime*) (**) )  
+ BST  OTE  [11,0] (*_IO_EM_DO_01*) (*yellow*)
+   NXB  
+ BST  OTE  [11,1] (*yellowEN*) (**)
+   NXB  OTS  [11,2] (*dispensing*) (**)
+ BND
+
+ BND
+
+EOR [12,0]
+
+
+(**)
+
+SOR  [0,18] (**) (**)  XIP  [1,0] (*_IO_EM_DI_04*) (*greenSoda*)  FB  [2,0] (*>=*) (*4*) ( (*EN:EN*)(**) (**)  , (*i1:*)(*moneyCount*) (**)  , (*i2:*)(*75*) (**) ; (*o1:*)(**) (**) )  FB  [5,0] (*-*) (*5*) ( (*EN:EN*)(**) (**)  , (*i1:*)(*moneyCount*) (**)  , (*i2:*)(*75*) (**) ; (*ENO:ENO*)(**) (**)  , (*o1:*)(*moneyCount*) (**) )  FB  [8,0] (*TP*) (*TP_2*) ( (*IN:IN*)(**) (**)  , (*PT:PT*)(*T#2s*) (**) ; (*Q:Q*)(**) (**)  , (*ET:ET*)(*greenTime*) (**) )  
+ BST  OTE  [11,0] (*_IO_EM_DO_02*) (*green*)
+   NXB  
+ BST  OTE  [11,1] (*greenEN*) (**)
+   NXB  OTS  [11,2] (*dispensing*) (**)
+ BND
+
+ BND
+
+EOR [12,0]
+
+
+(**)
+
+SOR  [0,22] (**) (**)  XIP  [1,0] (*_IO_EM_DI_05*) (*blueSoda*)  FB  [2,0] (*>=*) (*4*) ( (*EN:EN*)(**) (**)  , (*i1:*)(*moneyCount*) (**)  , (*i2:*)(*100*) (**) ; (*o1:*)(**) (**) )  FB  [5,0] (*-*) (*5*) ( (*EN:EN*)(**) (**)  , (*i1:*)(*moneyCount*) (**)  , (*i2:*)(*100*) (**) ; (*ENO:ENO*)(**) (**)  , (*o1:*)(*moneyCount*) (**) )  FB  [8,0] (*TP*) (*TP_3*) ( (*IN:IN*)(**) (**)  , (*PT:PT*)(*T#2s*) (**) ; (*Q:Q*)(**) (**)  , (*ET:ET*)(*blueTime*) (**) )  
+ BST  OTE  [11,0] (*_IO_EM_DO_03*) (*blue*)
+   NXB  
+ BST  OTE  [11,1] (*blueEN*) (**)
+   NXB  OTS  [11,2] (*dispensing*) (**)
+ BND
+
+ BND
+
+EOR [12,0]
+
+
+(**)
+
+SOR  [0,26] (**) (**)  XIC  [1,0] (*dispenseEN*) (**)  JMP [2,0] (*ChangeDispense*) (**)
+EOR [3,0]
+
+
+(**)
+
+SOR  [0,28] (**) (**)  XIC  [1,0] (*yellowEN*) (**)  FB  [2,0] (*=*) (*9*) ( (*EN:EN*)(**) (**)  , (*i1:*)(*yellowTime*) (**)  , (*i2:*)(*T#2s*) (**) ; (*o1:*)(**) (**) )  JMP [5,0] (*End*) (**)
+EOR [6,0]
+
+
+(**)
+
+SOR  [0,32] (**) (**)  XIC  [1,0] (*yellowEN*) (**)  JMP [2,0] (*RedLightOff*) (**)
+EOR [3,0]
+
+
+(**)
+
+SOR  [0,34] (**) (**)  XIC  [1,0] (*greenEN*) (**)  FB  [2,0] (*=*) (*9*) ( (*EN:EN*)(**) (**)  , (*i1:*)(*greenTime*) (**)  , (*i2:*)(*T#1s990ms*) (**) ; (*o1:*)(**) (**) )  JMP [5,0] (*End*) (**)
+EOR [6,0]
+
+
+(**)
+
+SOR  [0,38] (**) (**)  XIC  [1,0] (*greenEN*) (**)  JMP [2,0] (*RedLightOff*) (**)
+EOR [3,0]
+
+
+(**)
+
+SOR  [0,40] (**) (**)  XIC  [1,0] (*blueEN*) (**)  FB  [2,0] (*=*) (*9*) ( (*EN:EN*)(**) (**)  , (*i1:*)(*blueTime*) (**)  , (*i2:*)(*T#1s990ms*) (**) ; (*o1:*)(**) (**) )  JMP [5,0] (*End*) (**)
+EOR [6,0]
+
+
+(**)
+
+SOR  [0,44] (**) (**)  XIC  [1,0] (*blueEN*) (**)  JMP [2,0] (*RedLightOff*) (**)
+EOR [3,0]
+
+
+(**)
+
+SOR  [0,46] (*RedLightCheck*) (**)  FB  [1,0] (*>=*) (*4*) ( (*EN:EN*)(**) (**)  , (*i1:*)(*moneyCount*) (**)  , (*i2:*)(*50*) (**) ; (*o1:*)(**) (**) )  OTS  [4,0] (*_IO_EM_DO_00*) (*cent50disp*)
+EOR [5,0]
+
+
+(**)
+
+SOR  [0,50] (**) (**)  XIC  [1,0] (*dispensing*) (**)  JMP [2,0] (*RedLightOff*) (**)
+EOR [3,0]
+
+
+(**)
+
+SOR  [0,52] (**) (**)  JMP [1,0] (*End*) (**)
+EOR [2,0]
+
+
+(**)
+
+SOR  [0,54] (*RedLightOff*) (**)  FB  [1,0] (*>=*) (*4*) ( (*EN:EN*)(**) (**)  , (*i1:*)(*moneyCount*) (**)  , (*i2:*)(*50*) (**) ; (*o1:*)(**) (**) )  
+ BST  OTR  [4,0] (*_IO_EM_DO_00*) (*cent50disp*)
+   NXB  OTS  [4,1] (*redLightOffRunning*) (**)
+ BND
+
+EOR [5,0]
+
+
+(**)
+
+SOR  [0,58] (**) (**)  FB  [1,0] (*>=*) (*4*) ( (*EN:EN*)(**) (**)  , (*i1:*)(*moneyCount*) (**)  , (*i2:*)(*50*) (**) ; (*o1:*)(**) (**) )  FB  [4,0] (*TP*) (*TP_4*) ( (*IN:IN*)(**) (**)  , (*PT:PT*)(*T#500ms*) (**) ; (*Q:Q*)(**) (**)  , (*ET:ET*)(*rLOTime*) (**) )
+EOR [7,0]
+
+
+(**)
+
+SOR  [0,62] (**) (**)  FB  [1,0] (*>=*) (*4*) ( (*EN:EN*)(**) (**)  , (*i1:*)(*moneyCount*) (**)  , (*i2:*)(*50*) (**) ; (*o1:*)(**) (**) )  FB  [4,0] (*>=*) (*4*) ( (*EN:EN*)(**) (**)  , (*i1:*)(*rLOTime*) (**)  , (*i2:*)(*T#450ms*) (**) ; (*o1:*)(**) (**) )  
+ BST  OTS  [7,0] (*dispenseEN*) (**)
+   NXB  OTR  [7,1] (*redLightOffRunning*) (**)
+ BND
+
+EOR [8,0]
+
+
+(**)
+
+SOR  [0,66] (*ChangeDispense*) (**)  XIO  [1,0] (*disSwitch*) (**)  FB  [2,0] (*>*) (*10*) ( (*EN:EN*)(**) (**)  , (*i1:*)(*moneyCount*) (**)  , (*i2:*)(*0*) (**) ; (*o1:*)(**) (**) )  FB  [5,0] (*TP*) (*TP_5*) ( (*IN:IN*)(**) (**)  , (*PT:PT*)(*T#500ms*) (**) ; (*Q:Q*)(**) (**)  , (*ET:ET*)(*dispenseTime*) (**) )  
+ BST  OTE  [8,0] (*_IO_EM_DO_00*) (*cent50disp*)
+   NXB  OTE  [8,1] (*subtractPulse*) (**)
+ BND
+
+EOR [9,0]
+
+
+(**)
+
+SOR  [0,70] (**) (**)  XIP  [1,0] (*subtractPulse*) (**)  FB  [2,0] (*-*) (*11*) ( (*EN:EN*)(**) (**)  , (*i1:*)(*moneyCount*) (**)  , (*i2:*)(*5*) (**) ; (*ENO:ENO*)(**) (**)  , (*o1:*)(*moneyCount*) (**) )
+EOR [5,0]
+
+
+(**)
+
+SOR  [0,74] (**) (**)  XIF  [1,0] (*_IO_EM_DO_00*) (*cent50disp*)  FB  [2,0] (*TP*) (*TP_6*) ( (*IN:IN*)(**) (**)  , (*PT:PT*)(*T#500ms*) (**) ; (*Q:Q*)(**) (**)  , (*ET:ET*)(*dispenseTimeOff*) (**) )  OTE  [5,0] (*disSwitch*) (**)
+EOR [6,0]
+
+
+(**)
+
+SOR  [0,77] (**) (**)  FB  [1,0] (*=*) (*13*) ( (*EN:EN*)(**) (**)  , (*i1:*)(*moneyCount*) (**)  , (*i2:*)(*0*) (**) ; (*o1:*)(**) (**) )  FB  [4,0] (*=*) (*13*) ( (*EN:EN*)(**) (**)  , (*i1:*)(*dispenseTimeOff*) (**)  , (*i2:*)(*T#0s*) (**) ; (*o1:*)(**) (**) )  
+ BST  OTR  [7,0] (*dispenseEN*) (**)
+   NXB  
+ BST  OTR  [7,1] (*dispensing*) (**)
+   NXB  OTR  [7,2] (*_IO_EM_DO_00*) (*cent50disp*)
+ BND
+
+ BND
+
+EOR [8,0]
+
+
+(**)
+
+SOR  [0,81] (*End*) (**)
+EOR [1,0]
+EOF
+#end_info
+#info= ID_MAX
+NextId=13
+#end_info
+END_PROGRAM

@@ -1,0 +1,540 @@
+(****** QuickLD compiler *******************************)
+(****** Copyright Rockwell Automation Canada, Ltd ******)
+(****** ST *********************************************)
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(*Start*)
+__GL __LG0001 ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+; (*Pulse detection on : _IO_EM_DI_00 with __MEMO__1___IO_EM_DI_00 *)
+__EDTB1 := (_IO_EM_DI_00 AND NOT(__MEMO__1___IO_EM_DI_00)) ;
+IF __EDTB1 THEN
+MONEYCOUNT := (MONEYCOUNT + 5) ;
+END_IF ;
+__MO_PLUS_1 := __EDTB1 ;
+
+(*************** Code for the end of Rung **************)
+__MEMO__1___IO_EM_DI_00 := _IO_EM_DI_00 ; (*Pulse detection on : _IO_EM_DI_00 with __MEMO__1___IO_EM_DI_00 *)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+; (*Pulse detection on : _IO_EM_DI_01 with __MEMO__2___IO_EM_DI_01 *)
+__EDTB2 := (_IO_EM_DI_01 AND NOT(__MEMO__2___IO_EM_DI_01)) ;
+IF __EDTB2 THEN
+MONEYCOUNT := (MONEYCOUNT + 10) ;
+END_IF ;
+__MO_PLUS_2 := __EDTB2 ;
+
+(*************** Code for the end of Rung **************)
+__MEMO__2___IO_EM_DI_01 := _IO_EM_DI_01 ; (*Pulse detection on : _IO_EM_DI_01 with __MEMO__2___IO_EM_DI_01 *)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+; (*Pulse detection on : _IO_EM_DI_02 with __MEMO__3___IO_EM_DI_02 *)
+__EDTB3 := (_IO_EM_DI_02 AND NOT(__MEMO__3___IO_EM_DI_02)) ;
+IF __EDTB3 THEN
+MONEYCOUNT := (MONEYCOUNT + 25) ;
+END_IF ;
+__MO_PLUS_3 := __EDTB3 ;
+
+(*************** Code for the end of Rung **************)
+__MEMO__3___IO_EM_DI_02 := _IO_EM_DI_02 ; (*Pulse detection on : _IO_EM_DI_02 with __MEMO__3___IO_EM_DI_02 *)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+; (*Pulse detection on : _IO_EM_DI_03 with __MEMO__4___IO_EM_DI_03 *)
+__EDTB5 := (_IO_EM_DI_03 AND NOT(__MEMO__4___IO_EM_DI_03)) ;
+IF __EDTB5 THEN
+(* Operator output on : >= with __EDTB4 *)
+__EDTB4 := (MONEYCOUNT >= 50) ;
+ELSE
+__EDTB4 := FALSE ;
+END_IF ;
+__MO_GREATEQUAL_1 := __EDTB4 ;
+__EDTB6 := __EDTB4 ;
+IF __EDTB6 THEN
+MONEYCOUNT := (MONEYCOUNT - 50) ;
+END_IF ;
+__MO_MINUS_1 := __EDTB6 ;
+(* FB call: TP *)
+TP_1(__EDTB6, T#2S) ;
+YELLOWTIME := TP_1.ET ;
+_IO_EM_DO_01 := TP_1.Q ;
+YELLOWEN := TP_1.Q ;
+__EDTB7 := TP_1.Q ;
+IF __EDTB7 THEN
+(*Set coil*)
+DISPENSING := TRUE ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+__MEMO__4___IO_EM_DI_03 := _IO_EM_DI_03 ; (*Pulse detection on : _IO_EM_DI_03 with __MEMO__4___IO_EM_DI_03 *)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+; (*Pulse detection on : _IO_EM_DI_04 with __MEMO__5___IO_EM_DI_04 *)
+__EDTB9 := (_IO_EM_DI_04 AND NOT(__MEMO__5___IO_EM_DI_04)) ;
+IF __EDTB9 THEN
+(* Operator output on : >= with __EDTB8 *)
+__EDTB8 := (MONEYCOUNT >= 75) ;
+ELSE
+__EDTB8 := FALSE ;
+END_IF ;
+__MO_GREATEQUAL_2 := __EDTB8 ;
+__EDTB10 := __EDTB8 ;
+IF __EDTB10 THEN
+MONEYCOUNT := (MONEYCOUNT - 75) ;
+END_IF ;
+__MO_MINUS_2 := __EDTB10 ;
+(* FB call: TP *)
+TP_2(__EDTB10, T#2S) ;
+GREENTIME := TP_2.ET ;
+_IO_EM_DO_02 := TP_2.Q ;
+GREENEN := TP_2.Q ;
+__EDTB11 := TP_2.Q ;
+IF __EDTB11 THEN
+(*Set coil*)
+DISPENSING := TRUE ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+__MEMO__5___IO_EM_DI_04 := _IO_EM_DI_04 ; (*Pulse detection on : _IO_EM_DI_04 with __MEMO__5___IO_EM_DI_04 *)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+; (*Pulse detection on : _IO_EM_DI_05 with __MEMO__6___IO_EM_DI_05 *)
+__EDTB13 := (_IO_EM_DI_05 AND NOT(__MEMO__6___IO_EM_DI_05)) ;
+IF __EDTB13 THEN
+(* Operator output on : >= with __EDTB12 *)
+__EDTB12 := (MONEYCOUNT >= 100) ;
+ELSE
+__EDTB12 := FALSE ;
+END_IF ;
+__MO_GREATEQUAL_3 := __EDTB12 ;
+__EDTB14 := __EDTB12 ;
+IF __EDTB14 THEN
+MONEYCOUNT := (MONEYCOUNT - 100) ;
+END_IF ;
+__MO_MINUS_3 := __EDTB14 ;
+(* FB call: TP *)
+TP_3(__EDTB14, T#2S) ;
+BLUETIME := TP_3.ET ;
+_IO_EM_DO_03 := TP_3.Q ;
+BLUEEN := TP_3.Q ;
+__EDTB15 := TP_3.Q ;
+IF __EDTB15 THEN
+(*Set coil*)
+DISPENSING := TRUE ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+__MEMO__6___IO_EM_DI_05 := _IO_EM_DI_05 ; (*Pulse detection on : _IO_EM_DI_05 with __MEMO__6___IO_EM_DI_05 *)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+__EDTB16 := DISPENSEEN ;
+IF __EDTB16 THEN
+(*GOTO ChangeDispense*)
+__GJ __LG0004 ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+__EDTB18 := YELLOWEN ;
+IF __EDTB18 THEN
+(* Operator output on : = with __EDTB17 *)
+__EDTB17 := (YELLOWTIME = T#2S) ;
+ELSE
+__EDTB17 := FALSE ;
+END_IF ;
+__MO_EQUAL_1 := __EDTB17 ;
+__EDTB19 := __EDTB17 ;
+IF __EDTB19 THEN
+(*GOTO End*)
+__GJ __LG0005 ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+__EDTB20 := YELLOWEN ;
+IF __EDTB20 THEN
+(*GOTO RedLightOff*)
+__GJ __LG0003 ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+__EDTB22 := GREENEN ;
+IF __EDTB22 THEN
+(* Operator output on : = with __EDTB21 *)
+__EDTB21 := (GREENTIME = T#1S990MS) ;
+ELSE
+__EDTB21 := FALSE ;
+END_IF ;
+__MO_EQUAL_2 := __EDTB21 ;
+__EDTB23 := __EDTB21 ;
+IF __EDTB23 THEN
+(*GOTO End*)
+__GJ __LG0005 ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+__EDTB24 := GREENEN ;
+IF __EDTB24 THEN
+(*GOTO RedLightOff*)
+__GJ __LG0003 ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+__EDTB26 := BLUEEN ;
+IF __EDTB26 THEN
+(* Operator output on : = with __EDTB25 *)
+__EDTB25 := (BLUETIME = T#1S990MS) ;
+ELSE
+__EDTB25 := FALSE ;
+END_IF ;
+__MO_EQUAL_3 := __EDTB25 ;
+__EDTB27 := __EDTB25 ;
+IF __EDTB27 THEN
+(*GOTO End*)
+__GJ __LG0005 ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+__EDTB28 := BLUEEN ;
+IF __EDTB28 THEN
+(*GOTO RedLightOff*)
+__GJ __LG0003 ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(*RedLightCheck*)
+__GL __LG0002 ;
+__EDTB30 := TRUE ;
+IF __EDTB30 THEN
+(* Operator output on : >= with __EDTB29 *)
+__EDTB29 := (MONEYCOUNT >= 50) ;
+ELSE
+__EDTB29 := FALSE ;
+END_IF ;
+__MO_GREATEQUAL_4 := __EDTB29 ;
+__EDTB31 := __EDTB29 ;
+IF __EDTB31 THEN
+(*Set coil*)
+_IO_EM_DO_00 := TRUE ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+__EDTB32 := DISPENSING ;
+IF __EDTB32 THEN
+(*GOTO RedLightOff*)
+__GJ __LG0003 ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+(*GOTO End*)
+__GJ __LG0005 ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(*RedLightOff*)
+__GL __LG0003 ;
+__EDTB34 := TRUE ;
+IF __EDTB34 THEN
+(* Operator output on : >= with __EDTB33 *)
+__EDTB33 := (MONEYCOUNT >= 50) ;
+ELSE
+__EDTB33 := FALSE ;
+END_IF ;
+__MO_GREATEQUAL_5 := __EDTB33 ;
+__EDTB35 := __EDTB33 ;
+IF __EDTB35 THEN
+(*Reset coil*)
+_IO_EM_DO_00 := FALSE ;
+END_IF ;
+__EDTB36 := __EDTB33 ;
+IF __EDTB36 THEN
+(*Set coil*)
+REDLIGHTOFFRUNNING := TRUE ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+__EDTB38 := TRUE ;
+IF __EDTB38 THEN
+(* Operator output on : >= with __EDTB37 *)
+__EDTB37 := (MONEYCOUNT >= 50) ;
+ELSE
+__EDTB37 := FALSE ;
+END_IF ;
+__MO_GREATEQUAL_6 := __EDTB37 ;
+(* FB call: TP *)
+TP_4(__EDTB37, T#500MS) ;
+RLOTIME := TP_4.ET ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+__EDTB40 := TRUE ;
+IF __EDTB40 THEN
+(* Operator output on : >= with __EDTB39 *)
+__EDTB39 := (MONEYCOUNT >= 50) ;
+ELSE
+__EDTB39 := FALSE ;
+END_IF ;
+__MO_GREATEQUAL_7 := __EDTB39 ;
+__EDTB42 := __EDTB39 ;
+IF __EDTB42 THEN
+(* Operator output on : >= with __EDTB41 *)
+__EDTB41 := (RLOTIME >= T#450MS) ;
+ELSE
+__EDTB41 := FALSE ;
+END_IF ;
+__MO_GREATEQUAL_8 := __EDTB41 ;
+__EDTB43 := __EDTB41 ;
+IF __EDTB43 THEN
+(*Set coil*)
+DISPENSEEN := TRUE ;
+END_IF ;
+__EDTB44 := __EDTB41 ;
+IF __EDTB44 THEN
+(*Reset coil*)
+REDLIGHTOFFRUNNING := FALSE ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(*ChangeDispense*)
+__GL __LG0004 ;
+__EDTB46 := NOT(DISSWITCH) ;
+IF __EDTB46 THEN
+(* Operator output on : > with __EDTB45 *)
+__EDTB45 := (MONEYCOUNT > 0) ;
+ELSE
+__EDTB45 := FALSE ;
+END_IF ;
+__MO_GREAT_1 := __EDTB45 ;
+(* FB call: TP *)
+TP_5(__EDTB45, T#500MS) ;
+DISPENSETIME := TP_5.ET ;
+_IO_EM_DO_00 := TP_5.Q ;
+SUBTRACTPULSE := TP_5.Q ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+; (*Pulse detection on : SUBTRACTPULSE with __MEMO__7__SUBTRACTPULSE *)
+__EDTB47 := (SUBTRACTPULSE AND NOT(__MEMO__7__SUBTRACTPULSE)) ;
+IF __EDTB47 THEN
+MONEYCOUNT := (MONEYCOUNT - 5) ;
+END_IF ;
+__MO_MINUS_4 := __EDTB47 ;
+
+(*************** Code for the end of Rung **************)
+__MEMO__7__SUBTRACTPULSE := SUBTRACTPULSE ; (*Pulse detection on : SUBTRACTPULSE with __MEMO__7__SUBTRACTPULSE *)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+; (*Fall detection on  : _IO_EM_DO_00 with __MEMO__8___IO_EM_DO_00 *)
+(* FB call: TP *)
+TP_6((__MEMO__8___IO_EM_DO_00 AND NOT(_IO_EM_DO_00)), T#500MS) ;
+DISPENSETIMEOFF := TP_6.ET ;
+DISSWITCH := TP_6.Q ;
+
+(*************** Code for the end of Rung **************)
+__MEMO__8___IO_EM_DO_00 := _IO_EM_DO_00 ; (*Fall detection on  : _IO_EM_DO_00 with __MEMO__8___IO_EM_DO_00 *)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+__EDTB49 := TRUE ;
+IF __EDTB49 THEN
+(* Operator output on : = with __EDTB48 *)
+__EDTB48 := (MONEYCOUNT = 0) ;
+ELSE
+__EDTB48 := FALSE ;
+END_IF ;
+__MO_EQUAL_4 := __EDTB48 ;
+__EDTB51 := __EDTB48 ;
+IF __EDTB51 THEN
+(* Operator output on : = with __EDTB50 *)
+__EDTB50 := (DISPENSETIMEOFF = T#0S) ;
+ELSE
+__EDTB50 := FALSE ;
+END_IF ;
+__MO_EQUAL_5 := __EDTB50 ;
+__EDTB52 := __EDTB50 ;
+IF __EDTB52 THEN
+(*Reset coil*)
+DISPENSEEN := FALSE ;
+END_IF ;
+__EDTB53 := __EDTB50 ;
+IF __EDTB53 THEN
+(*Reset coil*)
+DISPENSING := FALSE ;
+END_IF ;
+__EDTB54 := __EDTB50 ;
+IF __EDTB54 THEN
+(*Reset coil*)
+_IO_EM_DO_00 := FALSE ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(*End*)
+__GL __LG0005 ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Code for the end of File **************)
+__GL __LG0000 ;
+
+
+
+(*************** Local Symbols table *******************)
+(* __MEMO__1___IO_EM_DI_00 *)
+(* __EDTB1 *)
+(* __MEMO__2___IO_EM_DI_01 *)
+(* __EDTB2 *)
+(* __MEMO__3___IO_EM_DI_02 *)
+(* __EDTB3 *)
+(* __MEMO__4___IO_EM_DI_03 *)
+(* __EDTB4 *)
+(* __EDTB5 *)
+(* __EDTB6 *)
+(* __EDTB7 *)
+(* __MEMO__5___IO_EM_DI_04 *)
+(* __EDTB8 *)
+(* __EDTB9 *)
+(* __EDTB10 *)
+(* __EDTB11 *)
+(* __MEMO__6___IO_EM_DI_05 *)
+(* __EDTB12 *)
+(* __EDTB13 *)
+(* __EDTB14 *)
+(* __EDTB15 *)
+(* __EDTB16 *)
+(* __EDTB17 *)
+(* __EDTB18 *)
+(* __EDTB19 *)
+(* __EDTB20 *)
+(* __EDTB21 *)
+(* __EDTB22 *)
+(* __EDTB23 *)
+(* __EDTB24 *)
+(* __EDTB25 *)
+(* __EDTB26 *)
+(* __EDTB27 *)
+(* __EDTB28 *)
+(* __EDTB29 *)
+(* __EDTB30 *)
+(* __EDTB31 *)
+(* __EDTB32 *)
+(* __EDTB33 *)
+(* __EDTB34 *)
+(* __EDTB35 *)
+(* __EDTB36 *)
+(* __EDTB37 *)
+(* __EDTB38 *)
+(* __EDTB39 *)
+(* __EDTB40 *)
+(* __EDTB41 *)
+(* __EDTB42 *)
+(* __EDTB43 *)
+(* __EDTB44 *)
+(* __EDTB45 *)
+(* __EDTB46 *)
+(* __MEMO__7__SUBTRACTPULSE *)
+(* __EDTB47 *)
+(* __MEMO__8___IO_EM_DO_00 *)
+(* __EDTB48 *)
+(* __EDTB49 *)
+(* __EDTB50 *)
+(* __EDTB51 *)
+(* __EDTB52 *)
+(* __EDTB53 *)
+(* __EDTB54 *)
+

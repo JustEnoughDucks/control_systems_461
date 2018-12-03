@@ -18,6 +18,8 @@ plot(Gp,Gm - 1.41,'g');
 hold off
 xlabel('Phase (degrees)');
 ylabel('Gain (dB)');
+title('Nichols chart');
+
 
 %Stability gain range k < -1.41
 k3 = -1.41 
@@ -40,6 +42,7 @@ hold off
 xlabel('Phase (degrees)');
 ylabel('Gain (dB)');
 legend('Base Gain','M-Circle','-9dB','-10dB','-10.19dB');
+title('Nichols chart');
 k6 = 10.19;
 
 %% Control Systems Homework 12 Problem 4
@@ -64,6 +67,7 @@ plot(Gwp4,Gwm4 + 2.89,'g');
 hold off
 xlabel('Phase (degrees)');
 ylabel('Gain (dB)')
+title('Nichols chart');
 
 k4 = 2.89
 Gw4_cl = Gw4*k4 ./ (1 + Gw4*k4) ;
@@ -71,6 +75,7 @@ figure
 plot(w,abs(Gw4_cl));
 xlabel('Frequency (rad/sec)');
 ylabel('Closed-Loop Gain');
+title('Nichols Close Loop Response');
 
 %% Control Systems Homework 12 Problem 5
 
@@ -94,13 +99,15 @@ plot(Gwp4,Gwm4 - 6.99,'g');
 hold off
 xlabel('Phase (degrees)');
 ylabel('Gain (dB)')
+title('Nichols chart');
 
-k4 = 2.89
+k4 = - 2.89
 Gw4_cl = Gw4*k4 ./ (1 + Gw4*k4) ;
 figure
 plot(w,abs(Gw4_cl));
 xlabel('Frequency (rad/sec)');
 ylabel('Closed-Loop Gain');
+title('Nichols Close Loop Response');
 
 %% Control Systems Homework 12 Problem 6
 figure;
@@ -117,10 +124,10 @@ title('Nyquist Diagram');
 % Add G(jw) ontop
 w = [1:0.01:20]';
 s = j*w;
-k6 = 1;
+k6 = db2mag(2.89);
 Gw6 = k6* 1000 ./ ( (s+2) .* (s+5) .* (s+20) );
 hold on
-plot(real(Gw6),imag(Gw6),'b');
+plot(real(Gw6),imag(Gw6),'g');
 plot([-1 -.5],[0,-.5],'k');
 plot([-1.5 -.5],[0,-1],'k');
 plot([-2, -.5],[0,-1.5],'k');
@@ -143,8 +150,9 @@ title('Inverse Nyquist Diagram');
 % Add G(jw) ontop
 w = [1:0.01:20]';
 s = j*w;
-Gw7 = 1000 ./ ( (s+2) .* (s+5) .* (s+20) );
+k7 = db2mag(2.89);
+Gw7 = k7 * 1000 ./ ( (s+2) .* (s+5) .* (s+20) );
 hold on
-plot(real(Gw7 .^ (-1)),imag(Gw7 .^ (-1)),'b');
+plot(real(Gw7 .^ (-1)),imag(Gw7 .^ (-1)),'g');
 line([-4,0],[0,0]);
 hold off
